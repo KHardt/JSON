@@ -6,5 +6,10 @@ const loadDatabase = function (localStorageKey) {
     return JSON.parse(databaseString)
 }
 
-loadDatabase("whatever")
-console.log(loadDatabase("whatever"))
+let data = loadDatabase("whatever")
+console.log(data)
+
+
+for (i = 0; i < data.furniture.length; i++) {
+    console.log(data.furniture[i]);
+}

@@ -70,7 +70,6 @@ HomeInventoryDatabase.furniture.push(antiqueChairs)
 HomeInventoryDatabase.furniture.push(largeCouch)
 HomeInventoryDatabase.furniture.push(smallTable)
 
-console.log(HomeInventoryDatabase.art)
 
 HomeInventoryDatabase.art.push(oldPainting1)
 HomeInventoryDatabase.art.push(oldArtwork)
@@ -80,6 +79,31 @@ HomeInventoryDatabase.electronics.push(desktopComputer)
 HomeInventoryDatabase.electronics.push(laptopComputer)
 HomeInventoryDatabase.electronics.push(sonosSystem)
 
-const saveDatabase = function (databaseObject) {
 
+
+
+const saveDatabase = function (databaseObject, localStorageKey) {
+    /*
+        Convert the Object into a string.
+    */
+    const stringifiedDatabase = JSON.stringify(databaseObject)
+
+    /*
+        Create a key in local storage, and store the string
+        version of your inventory database as the value
+    */
+    localStorage.setItem(localStorageKey, stringifiedDatabase)
 }
+
+saveDatabase(HomeInventoryDatabase, "whatever");
+
+const loadDatabase = function (localStorageKey) {
+    // Get the string version of the database
+    const databaseString = localStorage.getItem(localStorageKey)
+
+    // Use JSON.parse() to convert the string back into an object
+    return JSON.parse(databaseString)
+}
+
+let test = loadDatabase("whatever")
+console.log(test)
